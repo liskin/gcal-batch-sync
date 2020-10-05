@@ -1,4 +1,0 @@
-pytest-runner
-setuptools >= 40
-setuptools_scm
-wheel
