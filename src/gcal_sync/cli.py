@@ -1,5 +1,8 @@
 import argparse
 import logging
+from pprint import pprint
+
+from .gcal import GCal
 
 logger = logging.getLogger(__name__)
 
@@ -26,3 +29,6 @@ def setup_logging(args: argparse.Namespace) -> None:
 def main() -> None:
     args = parse_args()
     setup_logging(args)
+
+    cal = GCal()
+    pprint(list(cal.list_calendars(fields="items(id,summary)")))
