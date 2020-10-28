@@ -50,4 +50,8 @@ def calendar(token_filename: Optional[str] = None) -> discovery.Resource:
         "https://www.googleapis.com/auth/calendar.events",
     ]
 
-    return discovery.build("calendar", "v3", credentials=_obtain_token(filename=token_filename, scopes=scopes))
+    return discovery.build(
+        "calendar", "v3",
+        credentials=_obtain_token(filename=token_filename, scopes=scopes),
+        cache_discovery=False,
+    )
