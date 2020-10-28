@@ -1,13 +1,28 @@
 import argparse
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="TODO"
     )
+    parser.add_argument(
+        '-v', '--verbose', action='count', default=0,
+    )
     return parser.parse_args()
+
+
+def setup_logging(args: argparse.Namespace) -> None:
+    level = (
+        logging.DEBUG if args.verbose >= 2 else
+        logging.INFO if args.verbose >= 1 else
+        logging.WARNING
+    )
+    logging.basicConfig(level=level)
 
 
 def main() -> None:
     args = parse_args()
-    _ = args
+    setup_logging(args)
