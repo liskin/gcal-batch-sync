@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from contextlib import AbstractContextManager
 import json
 import os
 from pathlib import Path
@@ -103,13 +104,17 @@ class GCal:
         return Calendar(self, id)
 
 
-class Batch:
+class Batch(AbstractContextManager):
     def __init__(self, gcal: GCal):
         self._gcal = gcal
         self._batch_value = None
 
     def __call__(self) -> discovery.Resource:
         return self._gcal()
+
+    def __exit__(self, exc_type, exc_value, traceback) -> None:
+        if not exc_value:
+            self.flush()
 
     @property
     def _batch(self) -> http.BatchHttpRequest:
