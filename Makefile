@@ -42,6 +42,10 @@ lint-isort: $(VENV_DONE)
 test: $(VENV_DONE)
 	$(VENV_PYTHON) -m pytest $(PYTEST_FLAGS) tests/
 
+.PHONY: test-online
+test-online: export PYTEST_ONLINE=1
+test-online: test
+
 .PHONY: dist
 dist: $(VENV_DONE)
 	rm -rf dist/
