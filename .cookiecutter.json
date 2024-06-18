@@ -3,7 +3,7 @@
     "author_github": "liskin",
     "author_name": "Tom\u00e1\u0161 Janou\u0161ek",
     "author_paypal": "lisknisi",
-    "hyphenated": "gcal-sync",
-    "name": "gcal-sync",
-    "underscored": "gcal_sync"
+    "hyphenated": "gcal-batch-sync",
+    "name": "gcal-batch-sync",
+    "underscored": "gcal_batch_sync"
 }

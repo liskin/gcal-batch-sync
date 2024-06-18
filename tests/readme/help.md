@@ -1,5 +1,5 @@
-    $ gcal-sync --help
-    Usage: gcal-sync [OPTIONS]
+    $ gcal-batch-sync --help
+    Usage: gcal-batch-sync [OPTIONS]
     
       TODO
     

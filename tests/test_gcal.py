@@ -5,7 +5,7 @@ import os
 import pytest  # type: ignore [import]
 import pytz
 
-from gcal_sync.gcal import GCal
+from gcal_batch_sync.gcal import GCal
 
 
 @pytest.mark.skipif(not os.getenv("PYTEST_ONLINE"), reason="PYTEST_ONLINE not enabled")
