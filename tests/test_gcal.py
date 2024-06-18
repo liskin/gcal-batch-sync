@@ -1,9 +1,9 @@
 from datetime import datetime
 from datetime import timedelta
+from datetime import timezone
 import os
 
 import pytest  # type: ignore [import]
-import pytz
 
 from gcal_batch_sync.gcal import GCal
 
@@ -14,7 +14,7 @@ def test_gcal():
     testcal = cal.find_calendar("gcal-sync-test", hidden=True)
     assert testcal
 
-    time1 = datetime.fromtimestamp(1603972800, tz=pytz.utc)
+    time1 = datetime.fromtimestamp(1603972800, tz=timezone.utc)
     time2 = time1 + timedelta(hours=1)
     time3 = time2 + timedelta(hours=1)
 
