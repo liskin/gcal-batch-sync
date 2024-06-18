@@ -2,7 +2,7 @@ name: Build and publish Python distribution 📦 to PyPI
 
 # XXX: before publishing, configure PyPI
 #  - https://pypi.org/manage/account/publishing/ (new packages)
-#  - https://pypi.org/manage/project/gcal-sync/settings/publishing/ (existing packages)
+#  - https://pypi.org/manage/project/gcal-batch-sync/settings/publishing/ (existing packages)
 
 on:
   release:
@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pypi
-      url: https://pypi.org/p/gcal-sync
+      url: https://pypi.org/p/gcal-batch-sync
     permissions:
       id-token: write
     steps:

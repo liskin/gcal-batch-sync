@@ -6,7 +6,7 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "gcal-sync"
+name = "gcal-batch-sync"
 description = "FIXME"
 authors = [{name = "Tomáš Janoušek", email = "tomi@nomi.cz"}]
 license = {text = "MIT"}
@@ -48,15 +48,15 @@ test = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/liskin/gcal-sync"
-"Release Notes" = "https://github.com/liskin/gcal-sync/releases"
-"Issues" = "https://github.com/liskin/gcal-sync/issues"
-"CI" = "https://github.com/liskin/gcal-sync/actions"
+"Homepage" = "https://github.com/liskin/gcal-batch-sync"
+"Release Notes" = "https://github.com/liskin/gcal-batch-sync/releases"
+"Issues" = "https://github.com/liskin/gcal-batch-sync/issues"
+"CI" = "https://github.com/liskin/gcal-batch-sync/actions"
 "Donations (GitHub)" = "https://github.com/sponsors/liskin"
 "Donations (PayPal)" = "https://www.paypal.me/lisknisi/10EUR"
 
 [project.scripts]
-gcal-sync = "gcal_sync.cli:cli"
+gcal-batch-sync = "gcal_batch_sync.cli:cli"
 
 [tool.gha-check-distro]
 dependencies-apt = [

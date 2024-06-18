@@ -1,12 +1,12 @@
-# gcal-sync
+# gcal-batch-sync
 
-[![PyPI Python Version badge](https://img.shields.io/pypi/pyversions/gcal-sync)](https://pypi.org/project/gcal-sync/)
-[![PyPI Version badge](https://img.shields.io/pypi/v/gcal-sync)](https://pypi.org/project/gcal-sync/)
-![License badge](https://img.shields.io/github/license/liskin/gcal-sync)
+[![PyPI Python Version badge](https://img.shields.io/pypi/pyversions/gcal-batch-sync)](https://pypi.org/project/gcal-batch-sync/)
+[![PyPI Version badge](https://img.shields.io/pypi/v/gcal-batch-sync)](https://pypi.org/project/gcal-batch-sync/)
+![License badge](https://img.shields.io/github/license/liskin/gcal-batch-sync)
 
 ## Overview
 
-gcal-sync is a …
+gcal-batch-sync is a …
 
 <!-- FIXME: example image -->
 
@@ -16,21 +16,21 @@ Using [pipx][]:
 
 ```
 pipx ensurepath
-pipx install gcal-sync
+pipx install gcal-batch-sync
 ```
 
 To keep a local git clone around:
 
 ```
-git clone https://github.com/liskin/gcal-sync
-make -C gcal-sync pipx
+git clone https://github.com/liskin/gcal-batch-sync
+make -C gcal-batch-sync pipx
 ```
 
 Alternatively, if you don't need the isolated virtualenv that [pipx][]
 provides, feel free to just:
 
 ```
-pip install gcal-sync
+pip install gcal-batch-sync
 ```
 
 [pipx]: https://github.com/pypa/pipx
@@ -38,12 +38,12 @@ pip install gcal-sync
 ## Usage
 
 <!-- include tests/readme/help.md -->
-    $ gcal-sync --help
-    Usage: gcal-sync [OPTIONS]
+    $ gcal-batch-sync --help
+    Usage: gcal-batch-sync [OPTIONS]
     
     Options:
       --config FILE    Read configuration from FILE.  [default:
-                       /home/user/.config/gcal_sync/config.yaml]
+                       /home/user/.config/gcal_batch_sync/config.yaml]
       --config-sample  Show sample configuration file
       --help           Show this message and exit.
 <!-- end include tests/readme/help.md -->
@@ -53,13 +53,13 @@ pip install gcal-sync
 ### Configuration file
 
 Secrets (and other options) can be set permanently in a config file,
-which is located at `~/.config/gcal_sync/config.yaml` by default
+which is located at `~/.config/gcal_batch_sync/config.yaml` by default
 (on Linux; on other platforms see output of `--help`).
 
 Sample config file can be generated using the `--config-sample` flag:
 
 <!-- include tests/readme/config-sample.md -->
-    $ gcal-sync --config-sample
+    $ gcal-batch-sync --config-sample
 <!-- end include tests/readme/config-sample.md -->
 
 ## Contributing

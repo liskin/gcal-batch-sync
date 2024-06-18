@@ -1,10 +1,10 @@
 Common invocation flags:
 
-    $ function gcal-sync {
-    >   command gcal-sync -- "$@"
+    $ function gcal-batch-sync {
+    >   command gcal-batch-sync -- "$@"
     > }
 
 Nothing:
 
-    $ gcal-sync <<END
+    $ gcal-batch-sync <<END
     > END

@@ -1,10 +1,10 @@
-# Contributing to gcal-sync
+# Contributing to gcal-batch-sync
 
 ## Development
 
 Obtain the source code:
 
-    $ git clone https://github.com/liskin/gcal-sync
+    $ git clone https://github.com/liskin/gcal-batch-sync
 
 Setup Python virtual env and install missing dependencies:
 
@@ -56,7 +56,7 @@ Other common tasks are available in the [Makefile](Makefile):
     help: Display this help
 <!-- end include tests/readme/make-help.md -->
 
-[ci]: https://github.com/liskin/gcal-sync/actions
+[ci]: https://github.com/liskin/gcal-batch-sync/actions
 
 ## Style Guidelines
 

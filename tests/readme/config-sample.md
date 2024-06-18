@@ -1,1 +1,1 @@
-    $ gcal-sync --config-sample
+    $ gcal-batch-sync --config-sample
