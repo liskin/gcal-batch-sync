@@ -4,19 +4,24 @@ from contextlib import AbstractContextManager
 import json
 import os
 from pathlib import Path
+import sys
 from typing import Any
 from typing import Iterator
 from typing import List
 from typing import Optional
 
-import appdirs  # type: ignore [import]
 from google.auth.transport.requests import Request  # type: ignore [import]
 from google.oauth2.credentials import Credentials  # type: ignore [import]
 from google_auth_oauthlib.flow import InstalledAppFlow  # type: ignore [import]
 from googleapiclient import discovery  # type: ignore [import]
 from googleapiclient.errors import BatchError  # type: ignore [import]
 from googleapiclient import http  # type: ignore [import]
-from pkg_resources import resource_stream
+import platformdirs
+
+if sys.version_info >= (3, 9):
+    import importlib.resources as importlib_resources  # isort: skip
+else:
+    import importlib_resources  # isort: skip
 
 
 def _load_token(filename: str) -> Credentials:
@@ -39,7 +44,8 @@ def _obtain_token(filename: str, scopes: List[str]) -> Credentials:
         if token and token.expired and token.refresh_token:
             token.refresh(Request())
         else:
-            with resource_stream(__package__, "client_secrets.json") as f:
+            client_secrets_resource = importlib_resources.files(__package__).joinpath("client_secrets.json")
+            with client_secrets_resource.open('r', encoding='utf-8') as f:
                 client_secrets = json.load(f)
             flow = InstalledAppFlow.from_client_config(client_secrets, scopes)
             token = flow.run_console()
@@ -70,7 +76,7 @@ class BatchRequestError(Exception):
 class GCal:
     def __init__(self, token_filename: Optional[str] = None):
         if not token_filename:
-            token_filename = os.path.join(appdirs.user_config_dir(appname=__package__), 'token.json')
+            token_filename = os.path.join(platformdirs.user_config_dir(appname=__package__), 'token.json')
 
         scopes = [
             "https://www.googleapis.com/auth/calendar.readonly",

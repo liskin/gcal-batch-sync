@@ -1,14 +1,100 @@
 [build-system]
 requires = [
-    "setuptools >= 42",
-    "setuptools_scm[toml] >= 3.4",
-    "wheel",
+    "setuptools >= 64.0",
+    "setuptools_scm[toml] >= 6.2",
 ]
 build-backend = "setuptools.build_meta"
 
+[project]
+name = "gcal-sync"
+description = "Library and command-line tools for reliable and fast synchronization with Google Calendar"
+authors = [{name = "Tomáš Janoušek", email = "tomi@nomi.cz"}]
+license = {text = "MIT"}
+readme = {file="README.md", content-type="text/markdown"}
+dynamic = ["version"]
+classifiers = [ # https://pypi.org/classifiers/
+    "Development Status :: 2 - Pre-Alpha",
+    "Environment :: Console",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Groupware",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Utilities",
+]
+requires-python = "~= 3.8"
+dependencies = [
+    "click ~= 8.0",
+    "google-api-python-client ~= 1.12",
+    "google-auth-oauthlib ~= 0.4",
+    "icalendar >= 5.0.2",
+    "importlib-metadata; python_version<'3.10'",
+    "importlib-resources; python_version<'3.9'",
+    "platformdirs >= 2.1",
+    "pytz",
+]
+
+[project.optional-dependencies]
+dev = [
+    "build >= 0.7",
+    "flake8",
+    "isort >= 5.0",
+    "mypy >= 0.900",
+    "prysk >= 0.20.0",
+    "twine",
+    "types-PyYAML",
+]
+test = [
+    "pytest",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/liskin/gcal-sync"
+"Release Notes" = "https://github.com/liskin/gcal-sync/releases"
+"Issues" = "https://github.com/liskin/gcal-sync/issues"
+"CI" = "https://github.com/liskin/gcal-sync/actions"
+"Donations (GitHub)" = "https://github.com/sponsors/liskin"
+"Donations (PayPal)" = "https://www.paypal.me/lisknisi/10EUR"
+
+[project.scripts]
+gcal-sync = "gcal_sync.cli:cli"
+
+[tool.gha-check-distro]
+dependencies-apt = [
+    "python3-build",
+    "python3-click",
+    "python3-flake8",
+    "python3-importlib-metadata",
+    "python3-importlib-resources",
+    "python3-isort",
+    "python3-mypy",
+    "python3-pip",
+    "python3-pip-whl",
+    "python3-platformdirs",
+    "python3-pytest",
+    "python3-typeshed",
+    "python3-venv",
+    "twine",
+]
+
 [tool.setuptools_scm]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+namespaces = false
+
+[tool.mypy]
+python_executable = ".venv/bin/python3"
+show_error_codes = true
 
 [tool.isort]
 profile = "open_stack"
+
+[tool.ruff]
+line-length = 120
 
 # vim:set et:
