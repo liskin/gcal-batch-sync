@@ -1,0 +1,52 @@
+name: Build and publish Python distribution 📦 to PyPI
+
+# XXX: before publishing, configure PyPI
+#  - https://pypi.org/manage/account/publishing/ (new packages)
+#  - https://pypi.org/manage/project/gcal-sync/settings/publishing/ (existing packages)
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    name: Build distribution 📦
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # needed for pre-releases
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: |
+          make venv
+      - name: Build
+        run: |
+          make dist
+      - name: Store artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  pypi:
+    needs:
+      - build
+    name: Publish distribution 📦 to PyPI
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/gcal-sync
+    permissions:
+      id-token: write
+    steps:
+      - name: Fetch artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - name: Publish distribution 📦 to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
