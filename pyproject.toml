@@ -74,7 +74,6 @@ dependencies-apt = [
     "python3-pip-whl",
     "python3-platformdirs",
     "python3-pytest",
-    "python3-typeshed",
     "python3-venv",
     "twine",
 ]

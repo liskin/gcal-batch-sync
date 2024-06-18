@@ -24,7 +24,7 @@ else:
     import importlib_resources  # isort: skip
 
 
-def _load_token(filename: str) -> Credentials:
+def _load_token(filename: str) -> Optional[Credentials]:
     try:
         return Credentials.from_authorized_user_file(filename)
     except Exception:
@@ -39,19 +39,19 @@ def _save_token(filename: str, token: Credentials) -> None:
 
 def _obtain_token(filename: str, scopes: List[str]) -> Credentials:
     token = _load_token(filename)
-
-    if not token or not token.valid:
-        if token and token.expired and token.refresh_token:
+    if token:
+        if token.expired and token.refresh_token:
             token.refresh(Request())
-        else:
-            client_secrets_resource = importlib_resources.files(__package__).joinpath("client_secrets.json")
-            with client_secrets_resource.open('r', encoding='utf-8') as f:
-                client_secrets = json.load(f)
-            flow = InstalledAppFlow.from_client_config(client_secrets, scopes)
-            token = flow.run_console()
-        _save_token(filename, token)
+            _save_token(filename, token)
+        if token.valid:
+            return token
 
-    return token
+    with importlib_resources.files(__package__).joinpath("client_secrets.json").open('r', encoding='utf-8') as f:
+        client_secrets = json.load(f)
+    flow = InstalledAppFlow.from_client_config(client_secrets, scopes)
+    new_token = flow.run_console()
+    _save_token(filename, new_token)
+    return new_token
 
 
 def _list_paginate(resource: discovery.Resource, **kwargs) -> Iterator[Any]:
